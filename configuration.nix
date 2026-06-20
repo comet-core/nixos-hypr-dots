@@ -73,6 +73,16 @@
     ];
   };
 
+  # --- GAMING SETUP ---
+     programs.steam = {
+       enable = true;
+       remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
+       dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
+     };
+     
+     # Enables gamemode for background optimization
+     programs.gamemode.enable = true;
+
   # --- 8. SYSTEM PACKAGES ---
   # I pulled these directly from the structure of your GitHub repo
   environment.systemPackages = with pkgs; [
