@@ -13,8 +13,8 @@ setopt sharehistory       # Share history across multiple open terminal windows
 
 # --- 3. THE GOODIES (PLUGINS) ---
 # Sourcing tells Zsh to read and execute the plugin files we downloaded via pacman
-source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+#source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+#source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # --- 4. TERMINAL PROMPT ---
 # This hooks Starship into Zsh so you get your fast, beautiful prompt
