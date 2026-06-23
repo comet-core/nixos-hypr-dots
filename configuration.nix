@@ -7,14 +7,21 @@
     ];
 
   # --- 1. BOOTLOADER & KERNEL ---
-  boot.loader.systemd-boot.enable = true;
+ # boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.kernelPackages = pkgs.linuxPackages_latest;
+  # --- SECURE BOOT (LANZABOOTE) ---
+  boot.loader.systemd-boot.enable = pkgs.lib.mkForce false;
+  boot.lanzaboote = {
+    enable = true;
+    pkiBundle = "/etc/secureboot";
+  };
 
   # --- 2. NETWORKING & LOCALE ---
   networking.hostName = "nixos"; 
   networking.networkmanager.enable = true;
   time.timeZone = "Asia/Kolkata";
+  time.hardwareClockInLocalTime = true;
   i18n.defaultLocale = "en_IN";
 
   # --- 3. NIX CORE & FLAKES ---
@@ -91,8 +98,10 @@
     micro
     fastfetch
     wget
-    firefox
+    sbctl
     grim slurp wl-clipboard
+    brave
+    vscode
     
     # Your Rice Dependencies
     kitty         # GPU-accelerated terminal
@@ -103,6 +112,7 @@
     zsh-autosuggestions
     zsh-syntax-highlighting
   ];
+  services.flatpak.enable = true;
 
   # --- 9. STATE VERSION ---
   system.stateVersion = "26.05";

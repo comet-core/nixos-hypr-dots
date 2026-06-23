@@ -10,6 +10,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    lanzaboote = {
+          url = "github:nix-community/lanzaboote";
+          inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -17,7 +22,7 @@
   };
 
   # 2. OUTPUTS: How we build the system using the downloaded inputs
-  outputs = { self, nixpkgs, noctalia, home-manager, ... }@inputs: {
+  outputs = { self, nixpkgs, noctalia, home-manager, lanzaboote, ... }@inputs: {
     nixosConfigurations = {
       # The name 'nixos' here MUST match your networking.hostName in configuration.nix
       nixos = nixpkgs.lib.nixosSystem {
@@ -30,6 +35,7 @@
           # System-level configurations
           ./hardware-configuration.nix
           ./configuration.nix
+          lanzaboote.nixosModules.lanzaboote
           
           # User-level configurations (Home Manager)
           home-manager.nixosModules.home-manager
