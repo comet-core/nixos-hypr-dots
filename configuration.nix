@@ -102,6 +102,7 @@
     grim slurp wl-clipboard
     brave
     vscode
+    vesktop
     
     # Your Rice Dependencies
     kitty         # GPU-accelerated terminal
