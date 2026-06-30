@@ -11,6 +11,8 @@
 
   home.packages = [
   	inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
+  	pkgs.heroic
+  	pkgs.lutris
   ];
 
   # --- THE MAGIC SYMLINKS ---
