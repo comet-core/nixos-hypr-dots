@@ -24,6 +24,13 @@
   time.hardwareClockInLocalTime = true;
   i18n.defaultLocale = "en_IN";
 
+  # --- BLUETOOTH ---
+  hardware.bluetooth.enable = true;
+  hardware.bluetooth.powerOnBoot = true; # Powers up the radio on startup
+    
+  # Graphical Bluetooth manager (essential for Hyprland)
+  services.blueman.enable = true;
+
   # --- 3. NIX CORE & FLAKES ---
   # This officially unlocks modern NixOS Flake commands
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
@@ -37,13 +44,25 @@
   
   services.xserver.videoDrivers = ["nvidia"];
   hardware.nvidia = {
-    modesetting.enable = true; # Mandatory for Hyprland/Wayland
-    powerManagement.enable = false;
-    powerManagement.finegrained = false;
-    open = false; # Forces proprietary drivers
-    nvidiaSettings = true;
-    package = config.boot.kernelPackages.nvidiaPackages.stable;
-  };
+      modesetting.enable = true; # Mandatory for Hyprland/Wayland
+      powerManagement.enable = true; # CHANGED: Lets the GPU sleep
+      powerManagement.finegrained = true; # CHANGED: Enables deep sleep for hybrid setups
+      open = false; # Forces proprietary drivers
+      nvidiaSettings = true;
+      package = config.boot.kernelPackages.nvidiaPackages.stable;
+  
+      # --- THE MISSING PRIME OFFLOAD BLOCK ---
+      prime = {
+        offload = {
+          enable = true;
+          enableOffloadCmd = true;
+        };
+        
+        # WARNING: You must replace these with your actual lspci addresses!
+        intelBusId = "PCI:0:2:0"; 
+        nvidiaBusId = "PCI:1:0:0"; 
+      };
+    };
 
   # --- 5. DESKTOP ENVIRONMENTS & COMPOSITORS ---
   # Keeps your KDE Plasma 6 backup safe and sound
