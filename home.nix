@@ -13,6 +13,8 @@
   	inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
   	pkgs.heroic
   	pkgs.lutris
+  	pkgs.nodejs_22
+  	pkgs.pnpm
   ];
 
   # --- THE MAGIC SYMLINKS ---
