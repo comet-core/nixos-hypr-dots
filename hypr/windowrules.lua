@@ -51,7 +51,7 @@ hl.window_rule({
     match = {
         class = "^(kitty)$",
     },
-    opacity = { "0.90, 0.90" },
+    opacity = "0.90, 0.90",
 })
 
 -- Hardware Acceleration & Latency Bypass (CS2 & Steam)
