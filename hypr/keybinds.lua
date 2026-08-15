@@ -30,12 +30,8 @@ hl.bind("SUPER" .. " + " .. "Space", hl.dsp.exec_cmd("noctalia-shell ipc call la
 
 -- Takes a picture of the entire screen and pipes the raw image data straight to your clipboard.
 
-hl.bind("Print", hl.dsp.exec_cmd("grim-| wl-copy"))
-
--- First runs 'slurp' to get mouse coordinates, then passes that specific region (-g) to 'grim' before copying it.
-
-hl.bind(mainMod .. " + " .. "SHIFT" .. " + " .. "S", hl.dsp.exec_cmd("grim -g \"$(slurp)\"-| wl-copy"))
-
+hl.bind("Print", hl.dsp.exec_cmd("grim - | wl-copy"))
+hl.bind(mainMod .. " + " .. "SHIFT" .. " + " .. "S", hl.dsp.exec_cmd("grim -g \"$(slurp)\" - | wl-copy"))
 -- --- Window Navigation ---
 
 hl.bind(mainMod .. " + " .. "left", hl.dsp.focus({ direction = "left" }))
