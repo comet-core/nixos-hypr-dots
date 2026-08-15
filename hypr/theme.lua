@@ -1,6 +1,6 @@
 ---@module 'hl'
 
--- 1. Default Fallback Colors
+-- 1. Default Fallbacks (Catppuccin Mocha)
 local color1 = "rgba(cba6f7ff)"
 local color2 = "rgba(89b4faff)"
 
@@ -11,22 +11,33 @@ local cache_file = io.open(home .. "/.cache/wallust/colors-hyprland.conf", "r")
 if cache_file then
     for line in cache_file:lines() do
         local key, val = line:match("^%s*%$([%w_]+)%s*=%s*(.-)%s*$")
-        if key == "color1" then
-            color1 = val
-        elseif key == "color2" then
-            color2 = val
+        if val then
+            -- Normalize 'rgb(HEX)' -> 'rgba(HEXff)' for the CColor parser
+            local hex = val:match("rgb%((%x+)%)") or val:match("rgba%((%x+)%)")
+            if hex then
+                val = string.format("rgba(%sff)", hex:gsub("ff$", ""))
+            end
+
+            if key == "color1" then
+                color1 = val
+            elseif key == "color2" then
+                color2 = val
+            end
         end
     end
     cache_file:close()
 end
 
--- 3. Core Theme Configuration
+-- 3. Core Theme Configuration with Animated Gradient
 hl.config({
     general = {
         gaps_in = 6,
         gaps_out = 14,
         border_size = 2,
-        ["col.active_border"] = color1 .. " " .. color2 .. " 45deg",
+        ["col.active_border"] = {
+            colors = { color1, color2 },
+            angle = 45,
+        },
         ["col.inactive_border"] = "rgba(31324444)",
         layout = "dwindle",
     },
