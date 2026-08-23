@@ -129,7 +129,6 @@
     brave
     vscode
     vesktop
-    chatgpt
     
     # Your Rice Dependencies
     kitty         # GPU-accelerated terminal
