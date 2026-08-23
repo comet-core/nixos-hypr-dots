@@ -42,12 +42,6 @@
     enable32Bit = true;
   };
 
-  # --- Ollama Services ---
-  services.ollama = {
-    enable = true;
-    package = pkgs.ollama-cuda; 
-  };
-
   nixpkgs.config.permittedInsecurePackages = [
       "electron-40.10.5"
       "pnpm-10.29.2"
@@ -135,7 +129,6 @@
     brave
     vscode
     vesktop
-    cherry-studio
     
     # Your Rice Dependencies
     kitty         # GPU-accelerated terminal
