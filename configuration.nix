@@ -1,4 +1,13 @@
-{ config, pkgs, ... }:
+{ config, pkgs, inputs,  ... }:
+
+
+let
+  pkgsStable = import inputs.nixpkgsStable {
+    system = pkgs.stdenv.hostPlatform.system;
+    config.allowUnfree = true;
+  };
+in
+
 
 {
   imports =
@@ -130,7 +139,7 @@
     brave
     vscode
     vesktop
-    antigravity-ide codex
+    pkgsStable.antigravity codex
     
     # Your Rice Dependencies
     kitty         # GPU-accelerated terminal

@@ -4,6 +4,7 @@
   # 1. INPUTS: Where we download our software from
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgsStable.url = "github:nixos/nixpkgs/nixos-26.05";
     
     noctalia = {
       url = "github:noctalia-dev/noctalia/legacy-v4";
