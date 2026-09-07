@@ -80,6 +80,7 @@
   programs.hyprland = {
     enable = true;
     xwayland.enable = true;
+    withUWSM = true;
   };
 
   # --- 6. AUDIO (PIPEWIRE) ---
@@ -129,7 +130,7 @@
     brave
     vscode
     vesktop
-    antigravity codex
+    antigravity-ide codex
     
     # Your Rice Dependencies
     kitty         # GPU-accelerated terminal
