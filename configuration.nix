@@ -129,7 +129,7 @@
     brave
     vscode
     vesktop
-    antigravity
+    antigravity codex
     
     # Your Rice Dependencies
     kitty         # GPU-accelerated terminal
