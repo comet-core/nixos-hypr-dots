@@ -34,7 +34,6 @@
         
         modules = [
           # System-level configurations
-          ./hardware-configuration.nix
           ./configuration.nix
           lanzaboote.nixosModules.lanzaboote
           
